@@ -11,7 +11,7 @@ export const metadata = {
 
 function TopNav() {
   return (
-    <nav className="flex items-center justify-between w-full p-4">
+    <nav className="flex w-full items-center justify-between p-4">
       <Link
         href="/"
         className="text-2xl font-bold text-white hover:text-gray-200"
@@ -19,7 +19,7 @@ function TopNav() {
         VapeLore
       </Link>
     </nav>
-  )
+  );
 }
 
 export default function RootLayout({
@@ -31,7 +31,8 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="bg-gray-950 text-white">
         <TopNav />
-        {children}</body>
+        {children}
+      </body>
     </html>
   );
 }
