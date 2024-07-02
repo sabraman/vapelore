@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic";
@@ -33,6 +34,7 @@ const posts = await db.query.posts.findMany();
 console.log(posts);
 
 export default async function HomePage() {
+  headers();
   return (
     <main>
       <div className="flex flex-wrap justify-evenly gap-8">
