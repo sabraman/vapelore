@@ -1,7 +1,10 @@
 import "~/styles/globals.css";
 
+import { ClerkProvider } from "@clerk/nextjs";
+import { ruRU } from "@clerk/localizations";
+
 import { GeistSans } from "geist/font/sans";
-import Link from "next/link";
+import TopNav from "./_components/topnav";
 
 export const metadata = {
   title: "VapeLore",
@@ -9,30 +12,19 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-function TopNav() {
-  return (
-    <nav className="flex w-full items-center justify-between p-4">
-      <Link
-        href="/"
-        className="text-2xl font-bold text-white hover:text-gray-200"
-      >
-        VapeLore
-      </Link>
-    </nav>
-  );
-}
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="bg-gray-950 text-white">
-        <TopNav />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider localization={ruRU}>
+      <html lang="ru" className={`${GeistSans.variable}`}>
+        <body className="bg-gray-950 text-white">
+          <TopNav />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
