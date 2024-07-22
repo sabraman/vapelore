@@ -24,6 +24,7 @@ export const createTable = pgTableCreator((name) => `vapelore_${name}`);
 export const posts = createTable(
   "post",
   {
+    userId: varchar("userId", { length: 256 }).notNull(),
     id: serial("id").primaryKey(),
     // name: varchar("name", { length: 256 }),
     imageUrl: varchar("imageUrl", { length: 2083 }).notNull(),

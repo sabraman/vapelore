@@ -35,7 +35,7 @@ async function Posts() {
     <>
       {posts.map((post) => (
         <div key={post.id} className="flex w-52 flex-col gap-2">
-          <img src={post.imageUrl} />
+          <img src={post.imageUrl} className="rounded-3xl"/>
           <div className="info">
             <p className="text-2xl font-bold">{post.brand}</p>
             <p className="text-xl font-semibold">{post.model}</p>
@@ -51,8 +51,8 @@ async function Posts() {
             <div className="flex flex-row justify-between">
               Затяжка: <p className="font-semibold">{post.puffType}</p>
             </div>
-            <div className="flex flex-row justify-between">
-              Вкусопередача: <p className="font-semibold">{post.taste}</p>
+            <div className="flex flex-col justify-between">
+              Вкусопередача: <p className="font-semibold flex justify-end">{post.taste}</p>
             </div>
             <div className="flex flex-row justify-between">
               Зарядка: <p className="font-semibold">{post.charge}</p>
