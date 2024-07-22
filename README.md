@@ -8,10 +8,14 @@ Website that let you add info about some vape stuff
 - [x] scaffold basic ui with mock data
 - [x] actually set up a db (vercel postgres)
 - [x] attach db to ui
-- [ ] add auth (w/ Clerk)
-- [ ] add image upload and info form
+- [x] add auth (w/ Clerk)
+- [x] add image upload
+- [x] add my posts page
+- [ ] "taint" (server-only)
+- [ ] use Next/Image component
 - [ ] error management (w/ Sentry)
 - [ ] routing/item page (parallel route)
+- [ ] post info form
 - [ ] delete button (w/Server Actions)
 - [ ] analytics (posthog)
 - [ ] ratelimitings (upstash)

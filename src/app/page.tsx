@@ -1,41 +1,18 @@
 import { SignedOut } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
 import { db } from "~/server/db";
+import { getPosts } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 2; // 20 seconds
 
-interface Post {
-  id: number;
-  imageUrl: string;
-  // Add other properties of the 'post' object here
-  isApproved: boolean;
-}
-
-// const mockInfo = {
-//   brand: "mock brand",
-//   model: "mock model",
-//   puffs: 9999,
-//   strength: "лёгкая",
-//   puffType: "тугая",
-//   taste: "насыщенная",
-//   charge: "нет",
-//   liqVolume: 5,
-//   capacity: 900,
-//   display: "нет",
-//   features: "guarder x",
-// };
-
 async function Posts() {
-  const posts = await db.query.posts.findMany({
-    orderBy: (post, { desc }) => desc(post.puffs),
-    where: (post, { eq }) => eq(post.isApproved, true),
-  });
+  const posts = await getPosts();
   return (
     <>
       {posts.map((post) => (
         <div key={post.id} className="flex w-52 flex-col gap-2">
-          <img src={post.imageUrl} className="rounded-3xl"/>
+          <img src={post.imageUrl} className="rounded-3xl" />
           <div className="info">
             <p className="text-2xl font-bold">{post.brand}</p>
             <p className="text-xl font-semibold">{post.model}</p>
@@ -52,7 +29,8 @@ async function Posts() {
               Затяжка: <p className="font-semibold">{post.puffType}</p>
             </div>
             <div className="flex flex-col justify-between">
-              Вкусопередача: <p className="font-semibold flex justify-end">{post.taste}</p>
+              Вкусопередача:{" "}
+              <p className="flex justify-end font-semibold">{post.taste}</p>
             </div>
             <div className="flex flex-row justify-between">
               Зарядка: <p className="font-semibold">{post.charge}</p>
