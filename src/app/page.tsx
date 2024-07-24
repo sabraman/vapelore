@@ -1,7 +1,6 @@
 import { SignedOut } from "@clerk/nextjs";
-import { eq } from "drizzle-orm";
-import { db } from "~/server/db";
 import { getPosts } from "~/server/queries";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 2; // 20 seconds
@@ -12,7 +11,14 @@ async function Posts() {
     <>
       {posts.map((post) => (
         <div key={post.id} className="flex w-52 flex-col gap-2">
-          <img src={post.imageUrl} className="rounded-3xl" />
+          <Image
+            src={post.imageUrl}
+            className="rounded-3xl"
+            width={208}
+            height={208}
+            style={{ objectFit: "cover" }}
+            alt={post.brand + " " + post.model}
+          />
           <div className="info">
             <p className="text-2xl font-bold">{post.brand}</p>
             <p className="text-xl font-semibold">{post.model}</p>

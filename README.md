@@ -11,8 +11,9 @@ Website that let you add info about some vape stuff
 - [x] add auth (w/ Clerk)
 - [x] add image upload
 - [x] add my posts page
-- [ ] "taint" (server-only)
-- [ ] use Next/Image component
+- [x] "taint" (server-only)
+- [x] use Next/Image component
+- [x] ui for Admin dashboard
 - [ ] error management (w/ Sentry)
 - [ ] routing/item page (parallel route)
 - [ ] post info form

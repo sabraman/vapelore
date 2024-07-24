@@ -1,7 +1,17 @@
-import { getUserPosts } from "~/server/queries";
+import { getPosts } from "~/server/queries";
+import { clerkClient } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { checkRole } from "~/utils/roles";
+
 export const dynamic = "force-dynamic";
+
 export default async function MyPosts() {
-  const posts = await getUserPosts();
+  // If the user does not have the admin role, redirect them to the home page
+  if (!checkRole("admin")) {
+    redirect("/");
+  }
+  const posts = await getPosts();
+  const userInfo = (await clerkClient.users.getUserList()).data;
   return (
     <main>
       <div className="flex flex-wrap justify-evenly gap-8">
@@ -12,6 +22,18 @@ export default async function MyPosts() {
               <p className="font-semibold">
                 {post.isApproved ? "Добавлено" : "В обработке"}
               </p>
+            </div>
+            <div key={post.id} className="flex w-52 flex-col gap-2">
+              <div className="flex flex-row justify-between">
+                Добавлено:
+                <p className="text-sm">
+                  {userInfo.map((user) => {
+                    if (user.id === post.userId) {
+                      return user.username;
+                    }
+                  })}
+                </p>
+              </div>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
