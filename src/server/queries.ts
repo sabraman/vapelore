@@ -29,3 +29,15 @@ export async function getUserPosts() {
 
   return posts;
 }
+
+export async function getPost(id: number) {
+  const post = await db.query.posts.findFirst({
+    where: (post, { eq }) => eq(post.id, id),
+  });
+
+  if (!post) {
+    throw new Error("Не найден");
+  }
+
+  return post;
+}

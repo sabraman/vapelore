@@ -16,13 +16,15 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider localization={ruRU}>
       <html lang="ru" className={`${GeistSans.variable}`}>
-      <NextSSRPlugin
+        <NextSSRPlugin
           /**
            * The `extractRouterConfig` will extract **only** the route configs
            * from the router to prevent additional information from being
@@ -34,6 +36,8 @@ export default function RootLayout({
         <body className="bg-gray-950 text-white">
           <TopNav />
           {children}
+          {modal}
+          <div id="modal-root" />
         </body>
       </html>
     </ClerkProvider>

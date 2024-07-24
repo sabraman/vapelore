@@ -36,7 +36,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.js",
-    "src/globals.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]

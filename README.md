@@ -14,7 +14,6 @@ Website that let you add info about some vape stuff
 - [x] "taint" (server-only)
 - [x] use Next/Image component
 - [x] ui for Admin dashboard
-- [ ] error management (w/ Sentry)
 - [ ] routing/item page (parallel route)
 - [ ] post info form
 - [ ] delete button (w/Server Actions)
