@@ -1,7 +1,8 @@
-import { getPosts } from "~/server/queries";
+import { addPost, deletePost, getAllPosts, getPosts } from "~/server/queries";
 import { clerkClient } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { checkRole } from "~/utils/roles";
+import { Button } from "~/components/ui/button";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +11,7 @@ export default async function MyPosts() {
   if (!checkRole("admin")) {
     redirect("/");
   }
-  const posts = await getPosts();
+  const posts = await getAllPosts();
   const userInfo = (await clerkClient.users.getUserList()).data;
   return (
     <main>
@@ -84,6 +85,34 @@ export default async function MyPosts() {
               <div className="flex flex-col justify-between">
                 Особенности: <p className="font-semibold">{post.features}</p>
               </div>
+              <form
+                action={async () => {
+                  "use server";
+                  await addPost(post.id);
+                }}
+              >
+                <Button
+                  variant={"outline"}
+                  type="submit"
+                  className="mt-4 w-full"
+                >
+                  Добавить
+                </Button>
+              </form>
+              <form
+                action={async () => {
+                  "use server";
+                  await deletePost(post.id);
+                }}
+              >
+                <Button
+                  variant={"destructive"}
+                  type="submit"
+                  className="mt-4 w-full"
+                >
+                  Удалить
+                </Button>
+              </form>
             </div>
           </div>
         ))}
