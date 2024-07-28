@@ -24,12 +24,12 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={ruRU}>
       <html lang="ru" className={`${GeistSans.variable}`}>
-        {/* <NextSSRPlugin
-          routerConfig={extractRouterConfig(ourFileRouter)}
-        /> */}
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <body className="bg-gray-950 text-white">
-          <TopNav />
-          {children}
+          <div className="grid h-screen grid-rows-[auto,1fr]">
+            <TopNav />
+            <main className="overflow-y-auto">{children}</main>
+          </div>
           {modal}
           <div id="modal-root" />
         </body>

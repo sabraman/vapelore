@@ -10,7 +10,7 @@ async function Posts() {
   const posts = await getPosts();
   return (
     <>
-      {posts.map((post) => (
+      {[...posts, ...posts, ...posts].map((post) => (
         <Link key={post.id} href={`/posts/${post.id}`} passHref>
           <div className="flex w-52 flex-col gap-2">
             <Image

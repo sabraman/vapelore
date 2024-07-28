@@ -22,11 +22,11 @@ export function Modal({ children }: { children: React.ReactNode }) {
     <div className="modal-backdrop">
       <dialog
         ref={dialogRef}
-        className="h-screen w-screen bg-gray-950/50"
+        className="h-screen w-screen text-white"
         onClose={onDismiss}
       >
         {children}
-        <button onClick={onDismiss} className="close-button" />
+        {/* <button onClick={onDismiss} className="close-button" /> */}
       </dialog>
     </div>,
     document.getElementById("modal-root")!,
