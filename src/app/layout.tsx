@@ -8,6 +8,8 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Toaster } from "~/components/ui/sonner";
+import { Suspense } from "react";
+import Metrika from "~/components/metrika";
 
 export const metadata = {
   title: "VapeLore",
@@ -34,6 +36,9 @@ export default function RootLayout({
           {modal}
           <div id="modal-root" />
           <Toaster />
+          <Suspense>
+            <Metrika />
+          </Suspense>
         </body>
       </html>
     </ClerkProvider>
