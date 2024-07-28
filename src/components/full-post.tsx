@@ -8,6 +8,7 @@ export default async function FullPost(props: { id: number }) {
   return (
     <div className="flex h-full w-full min-w-0 ">
       <div className="flex flex-shrink items-center justify-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={post.imageUrl}
           className=" flex-shrink rounded-3xl object-contain"
