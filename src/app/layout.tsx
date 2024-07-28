@@ -24,15 +24,9 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={ruRU}>
       <html lang="ru" className={`${GeistSans.variable}`}>
-        <NextSSRPlugin
-          /**
-           * The `extractRouterConfig` will extract **only** the route configs
-           * from the router to prevent additional information from being
-           * leaked to the client. The data passed to the client is the same
-           * as if you were to fetch `/api/uploadthing` directly.
-           */
+        {/* <NextSSRPlugin
           routerConfig={extractRouterConfig(ourFileRouter)}
-        />
+        /> */}
         <body className="bg-gray-950 text-white">
           <TopNav />
           {children}

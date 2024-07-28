@@ -1,4 +1,3 @@
-import { Modal } from "./modal";
 import FullPost from "~/components/full-post";
 
 export default function PostModal({
@@ -10,9 +9,5 @@ export default function PostModal({
   if (Number.isNaN(idAsNumber)) {
     throw new Error("Некорректный ID");
   }
-  return (
-    <Modal>
-      <FullPost id={idAsNumber} />
-    </Modal>
-  );
+  return <FullPost id={idAsNumber} />;
 }

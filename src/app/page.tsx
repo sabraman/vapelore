@@ -11,7 +11,7 @@ async function Posts() {
   return (
     <>
       {posts.map((post) => (
-        <Link key={post.id} href={`/post/${post.id}`} passHref>
+        <Link key={post.id} href={`/posts/${post.id}`} passHref>
           <div className="flex w-52 flex-col gap-2">
             <Image
               src={post.imageUrl}
