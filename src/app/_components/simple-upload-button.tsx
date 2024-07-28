@@ -3,6 +3,7 @@
 import { useUploadThing } from "~/utils/uploadthing";
 import { useRouter } from "next/navigation";
 import { ImageUp } from "lucide-react";
+import { toast } from "sonner";
 
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
@@ -33,7 +34,19 @@ const useUploadThingInputProps = (...args: Input) => {
 export const SimpleUploadButton = () => {
   const router = useRouter();
   const { inputProps } = useUploadThingInputProps("imageUploader", {
+    onUploadBegin() {
+      toast.info("Загрузка...", {
+        duration: 50000,
+        position: "top-center",
+        id: "image-upload",
+      });
+    },
     onClientUploadComplete() {
+      toast.dismiss("image-upload");
+      toast.success("Загружено!", {
+        position: "top-center",
+        duration: 1000,
+      });
       router.refresh();
     },
   });

@@ -7,6 +7,7 @@ import TopNav from "./_components/topnav";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata = {
   title: "VapeLore",
@@ -23,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider localization={ruRU}>
-      <html lang="ru" className={`${GeistSans.variable}`}>
+      <html lang="ru" className={`${GeistSans.variable} dark`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <body className="bg-gray-950 text-white">
           <div className="grid h-screen grid-rows-[auto,1fr]">
@@ -32,6 +33,7 @@ export default function RootLayout({
           </div>
           {modal}
           <div id="modal-root" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
