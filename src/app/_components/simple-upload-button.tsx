@@ -2,9 +2,10 @@
 
 import { useUploadThing } from "~/utils/uploadthing";
 import { useRouter } from "next/navigation";
-import { ImageUp } from "lucide-react";
 import { toast } from "sonner";
-
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import React from "react";
 // inferred input off useUploadThing
 type Input = Parameters<typeof useUploadThing>;
 
@@ -80,41 +81,42 @@ function Spinner() {
 }
 
 export const SimpleUploadButton = () => {
+  const [isUploading, setIsUploading] = React.useState(false);
+  const [isUploaded, setIsUploaded] = React.useState(false);
   const router = useRouter();
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
-      toast(
-        <span className="flex items-center gap-2">
-          <Spinner /> Загрузка...
-        </span>,
-        {
-          duration: 50000,
-          position: "top-center",
-          id: "image-upload",
-        },
-      );
+      setIsUploading(true);
     },
     onClientUploadComplete() {
-      toast.dismiss("image-upload");
-      toast.success("Загружено!", {
-        position: "top-center",
-        duration: 1000,
-      });
-      router.refresh();
+      setIsUploading(false);
+      setIsUploaded(true);
     },
   });
   return (
     <div className="flex">
-      <label htmlFor="upload-button" className="cursor-pointer">
-        <ImageUp />
-      </label>
-      <input
-        type="file"
-        name="Upload"
-        id="upload-button"
-        className="sr-only"
-        {...inputProps}
-      />
+      <div className="flex w-full items-center gap-1.5">
+        <Label
+          htmlFor="upload-button"
+          className="flex h-12 w-full cursor-pointer items-center justify-center rounded-md border-2 border-white"
+        >
+          {isUploaded ? (
+            "Загружено"
+          ) : isUploading ? (
+            <span className="flex items-center gap-2">
+              <Spinner /> Загрузка...
+            </span>
+          ) : (
+            "Загрузить"
+          )}
+        </Label>
+        <Input
+          className="hidden"
+          type="file"
+          id="upload-button"
+          {...inputProps}
+        />
+      </div>
     </div>
   );
 };

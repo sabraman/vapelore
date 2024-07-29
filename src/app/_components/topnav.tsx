@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { UploadButton } from "~/utils/uploadthing";
 import Logo from "./logo";
 import { User } from "lucide-react";
-import { SimpleUploadButton } from "./simple-upload-button";
+import AddPost from "./addPost";
 function TopNav() {
   const router = useRouter();
   return (
@@ -26,7 +26,8 @@ function TopNav() {
             endpoint="imageUploader"
             onClientUploadComplete={() => router.refresh()}
           />
-          <SimpleUploadButton />
+          {/* <SimpleUploadButton /> */}
+          <AddPost />
           <Link href="/myPosts">
             <User />
           </Link>
